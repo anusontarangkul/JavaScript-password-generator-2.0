@@ -26,32 +26,38 @@ let allowLowerCase = false;
 let allowUpperCase = false;
 let allowNumbers = false;
 let allowSpecial = false;
+let passlength = 0;
+
+let lowerCaseChar = "abcdefghijklmnopqrstuvwxyz";
+let upperCaseChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let numbersChar = "0123456789";
+let specialChar = `!"#$%&'()*+,-./:;<=>?@[\\\]^_\`\{|}~"`;
+
 
 function generatePassword() {
+  let possibleChars = "";
   findLengthMin();
   findLengthMax();
   validateCharacters();
 
+  passlength = Math.floor(Math.random() * (passMax - passMin) + passMin);
+  if (allowLowerCase) {
+    possibleChars += lowerCaseChar;
 
+  }
 
-  // var passwordMax = window.prompt("What is the maximum password length?");
-  // console.log("passwordMin " + passwordMax);
+  if (allowUpperCase) {
+    possibleChars += upperCaseChar;
+  }
 
-  // characterTypes()
-}
+  if (allowNumbers) {
+    possibleChars += numbersChar;
+  }
 
-function characterTypes() {
-  var lowerCaseCheck = window.prompt('Do you want to include lowercase? Type "YES" or "NO"');
-  console.log("lower case? " + lowerCaseCheck);
+  if (allowSpecial) {
+    possibleChars += specialChar;
+  }
 
-  var upperCaseCheck = window.prompt('Do you want to include uppercase? Type "YES" or "NO"');
-  console.log("upper case? " + upperCaseCheck);
-
-  var numericCheck = window.prompt('Do you want to include numbers? Type "YES" or "NO"');
-  console.log("numbers? " + numericCheck);
-
-  var specialCheck = window.prompt('Do you want to include special characters? Type "YES" or "NO"');
-  console.log("special characters? " + specialCheck);
 }
 
 function findLengthMin() {
@@ -65,6 +71,7 @@ function findLengthMin() {
     findLengthMin()
   }
   passMin = passwordMin;
+
 }
 
 function findLengthMax() {
@@ -77,7 +84,7 @@ function findLengthMax() {
     window.alert("The password maximum length is 256. Try again.");
     findLengthMax();
   }
-  passMax = passMax;
+  passMax = passwordMax;
 
 }
 
@@ -146,3 +153,9 @@ function validateCharacters() {
   };
 }
 
+function findLength(min, max) {
+  console.log(min)
+  console.log(max)
+  passlength = Math.floor(Math.random() * (max - min) + min);
+  console.log(passlength)
+}
